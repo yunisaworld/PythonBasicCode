@@ -28,16 +28,21 @@ def CugMasterLogin(username,password):
             'login_passwd':password,
             'login_check':authcode}
     data=urllib.urlencode(values)
-    urlDefault=urlopener.open(urllib2.Request('http://202.114.200.86/Gstudent/Default.aspx?UID=1201520622', data))
-    urlleft=urlopener.open(urllib2.Request(urlleftmenu, data))
+    #urlDefault=urlopener.open(urllib2.Request('http://202.114.200.86/Gstudent/Default.aspx?UID=1201520622', data))
+    req=urllib2.Request(urllog,data)
+    urlleft=urlopener.open(req)
     #print urlleft
+
 
 
     if not 'id' in [cookie.name for cookie in cookiejar]:
         print "Login failed with login=%s, password=%s, authcode=%s" % (username, password, authcode)
     print 'We are logged in!'
  
-    page=urlleft.read(500000)
+    page=urlleft.read()
+
+    print len(page)
+    
     return page
 
 def DownloadFile(fileUrl, urlopener):
