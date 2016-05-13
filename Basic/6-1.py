@@ -38,7 +38,7 @@ def print_params_2(x,y,z=3,*pospar,**keypar):
 def add(x,y):return x+y
 
 params=(1,2)
-print add(*params)
+#print add(*params)
 
 def with_start(**kwds):
     print kwds['name'],'is',kwds['age'],'years old'
