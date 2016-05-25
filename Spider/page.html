@@ -1,0 +1,168 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><link href="../App_Themes/Gwork/StyleSheet.css" type="text/css" rel="stylesheet" /><script src='/js/gwork.js' type='text/javascript'></script><title>
+
+</title>
+    <script type="text/javascript" src="/js/jquery/jquery.js"></script>
+    <link rel="stylesheet" href="/js/zTree/zTreeStyle.css" type="text/css" />
+    <script type="text/javascript" src="/js/zTree/jquery.ztree.core.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/js/jqueryeasyui/etongui.css" />
+    <script type="text/javascript" src="/js/jqueryeasyui/jquery.easyui.min.js"></script>   
+    <style type="text/css">
+        .ztree li span.button.ico_open
+        {
+            margin-right: 3px;
+            background: url(../js/zTree/img/dy_open.gif) no-repeat;
+            vertical-align: middle;
+        }
+        .ztree li span.button.ico_close
+        {
+            margin-right: 3px;
+            background: url(../js/zTree/img/dy_close.gif) no-repeat;
+            vertical-align: middle;
+        }       
+        
+        .ztree li span.button.ico_docu
+        {
+            visibility: hidden;
+            width: 0px;
+        }
+        .ztree li a:hover.level1
+        {
+            padding-top: 0px;
+            background-color: #035ca1;
+            color: White;
+            height: 16px;
+            border: 1px #033861 solid;
+            opacity: 1;
+        }
+        .ztree li a.curSelectedNode
+        {
+            padding-top: 0px;
+            background-color: #035ca1;
+            color: White;
+            height: 16px;
+            border: 1px #033861 solid;
+            opacity: 1;
+        }
+        .ztree1 li span.button.switch.level0
+        {
+            visibility: hidden;
+            width: 0px;
+        }
+        .ztree1 li ul.level0
+        {
+            padding: 0;
+            background: none;
+        }
+        .ztree1 li a:hover.level0
+        {
+            padding-top: 0px;
+            background-color: #035ca1;
+            color: White;
+            height: 16px;
+            border: 1px #033861 solid;
+            opacity: 1;
+        }
+        .ztree1 li a.curSelectedNode
+        {
+            padding-top: 0px;
+            background-color: #035ca1;
+            color: White;
+            height: 16px;
+            border: 1px #033861 solid;
+            opacity: 1;
+        }
+         .ztreebg
+        {           
+           margin: 0px;
+           padding: 0px;
+           background: #e4ecef;
+           overflow: auto;
+           text-align: left        
+       }
+    </style>
+    <script type="text/javascript">
+       
+        var setting = {
+            data: {
+                key: {
+                    title: "t"
+                },
+                simpleData: {
+                    enable: true
+                }
+            },
+            callback: {
+                beforeClick: beforeClick
+            },
+            view: {
+                dblClickExpand: false,
+                fontCss: getFont,
+                nameIsHTML: true
+            }
+        };
+        var setting1 = {
+            view: {
+                showIcon: true
+            },
+            data: {
+                key: {
+                    title: "t"
+                },
+                simpleData: {
+                    enable: true
+                }
+            }
+        };
+        var className = "dark";
+        function beforeClick(treeId, treeNode, clickFlag) {
+            className = (className === "dark" ? "" : "dark");
+            var zTree = $.fn.zTree.getZTreeObj(treeId);
+            zTree.expandNode(treeNode);
+            return (treeNode.click != false);
+        }
+        function getFont(treeId, node) {
+            return node.font ? node.font : {};
+        }         
+    </script>
+</head>
+<body>
+    <form name="Form1" method="post" action="leftmenu.aspx?UID=1201520622" id="Form1">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTQ2NjY2NTA2MGRk" />
+</div>
+
+    <div class="easyui-accordion" id="menu" fit="true" border="false">
+        
+    </div>
+    <div style="height: 26px; line-height: 26px; background: url('../js/jqueryeasyui/images/accordion_dy_h.gif');">
+        <span id="lblInfo" style="color:White;font-size:12px;font-weight:bold;line-height: 26px"></span>
+    </div>
+     <script type="text/javascript">
+         function getUrlParam(name) {
+             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+             var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+             if (r != null) return unescape(r[2]); return null; //返回参数值
+
+         }
+         if (getUrlParam('menu') == '00') {
+             var uid = getUrlParam('UID');
+             parent.frames["PageFrame"].location.href = "loging.aspx?UID=" + uid;
+         }        
+         $(function () {            
+             function initLayout() {              
+                 $('#menu').height(getTotalHeight()-52);
+                 $('#menu').accordion('resize');
+             };
+             initLayout();
+             $(window).resize(function () {
+                 initLayout();
+             });
+         });    
+     </script>
+    </form>
+</body>
+</html>
